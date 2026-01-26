@@ -3,10 +3,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
-# Min sti til Java-projektet
 output_path = "../src/main/resources/prem_stats.csv"
 
-# Trick: Vi lader som om vi er en rigtig browser (Safari på Mac)
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
 }
@@ -16,7 +14,6 @@ url = 'https://fbref.com/en/comps/9/Premier-League-Stats'
 print("Forbinder til FBRef... vent lige lidt.")
 
 try:
-    # Vi sender vores 'headers' med her
     response = requests.get(url, headers=headers)
     
     if response.status_code == 429:
@@ -39,7 +36,6 @@ try:
                 team_name = team_url.split("/")[-1].replace("-Stats", "").replace("-", " ")
                 print(f"Henter data for: {team_name}...")
                 
-                # Vi bruger også headers her
                 data = requests.get(team_url, headers=headers).text
                 
                 df = pd.read_html(data, match="Standard Stats")[0]
@@ -54,7 +50,7 @@ try:
                 df['Age'] = df['Age'].str.split('-').str[0]
                 
                 all_teams.append(df)
-                time.sleep(5) # Vi øger pausen lidt for at være på den sikre side
+                time.sleep(10) 
 
             final_df = pd.concat(all_teams, ignore_index=True)
             final_df.dropna(subset=['Player'], inplace=True)
