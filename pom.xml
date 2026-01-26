@@ -12,7 +12,7 @@
 	<artifactId>premier-zone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Premier Zone</name>
-	<description>Springboot app for a Premier League Fantasy Website  </description>
+	<description>Springboot app for a Premier League Website  </description>
 	<url/>
 	<licenses>
 		<license/>
@@ -37,6 +37,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.9</version>
 		</dependency>
 
 		<dependency>
